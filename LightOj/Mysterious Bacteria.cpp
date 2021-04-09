@@ -1,0 +1,89 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int MOD = 1e9+7;
+const double EPS = 1e-11;
+const double PI = 2 * acos(0.0);
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
+
+#define input freopen("input.txt", "r", stdin)
+#define output freopen("output.txt", "w", stdout)
+#define fast_io ios_base::sync_with_stdio(0);cin.tie(0);
+
+#define si(x) scanf("%d",&x)
+#define sii(x,y) scanf("%d %d",&x,&y)
+#define nl '\n'
+#define mp make_pair
+#define F first
+#define S second
+#define pb push_back
+#define ALL(v) v.begin(),v.end()
+#define out(x) cout <<x<<endl
+#define outt(x,y) cout <<x<<" "<<y<<endl
+#define mem(array,value) memset(array,value,sizeof(array))
+
+#define chkC(x,n) (x[n>>6]&(1<<((n>>1)&31)))
+#define setC(x,n) (x[n>>6]|=(1<<((n>>1)&31)))
+
+#define MX 1000004
+ll gcd(ll a,ll b)
+{
+    if(b==0)return a;
+    return gcd(b,a%b);
+}
+bool p[MX];
+vector<int>d,prime;
+void sieve()
+{
+    int sq=sqrt(MX);
+    for(int i=3;i<=sq;i+=2){
+        if(!p[i]){
+            for(int j=i*i;j<MX;j+=i+i){
+                p[j]=1;
+            }
+        }
+    }
+    prime.pb(2);
+    for(int i=3;i<MX;i+=2){
+        if(!p[i])prime.pb(i);
+    }
+}
+int main()
+{
+    //input;
+    sieve();
+    int t,cnt=0;
+    si(t);
+    while(t--){
+       ll x;
+       cin >>x;
+       bool neg=0;
+       if(x<0){neg=1;x=abs(x);}
+       int sz=prime.size();
+       ll ans=INT_MAX,c=0;
+       for(int i=0;i<sz && prime[i]<=x;i++){c=0;
+           while(x%prime[i]==0){
+                c++;x/=prime[i];
+           }
+           if(c){
+              ans = min(ans,c);
+           }
+       }
+       if(x!=1){
+          ans=1;
+       }
+       if(neg){
+          while(ans%2==0)ans/=2;
+       }
+       printf("Case %d: %lld\n",++cnt,ans);
+    }
+
+
+    return 0;
+}

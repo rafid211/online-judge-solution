@@ -1,0 +1,113 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int MOD = 1e9+7;
+const double EPS = 1e-11;
+const double PI = 2 * acos(0.0);
+const int INF = 0x7f7f7f7f;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
+typedef map<int,int>mii;
+typedef map<ll,ll>mll;
+
+#define input freopen("input.txt", "r", stdin)
+#define output freopen("output.txt", "w", stdout)
+#define fast_io ios_base::sync_with_stdio(0);cin.tie(0);
+
+#define caseNo(x) pf("Case %d: ",++x)
+#define pf printf
+#define si(x) scanf("%d",&x)
+#define sl(x) scanf("%lld",&x)
+#define sii(x,y) scanf("%d %d",&x,&y)
+#define sll(x,y) scanf("%lld %lld",&x,&y)
+#define siii(x,y,z) scanf("%d %d %d",&x,&y,&z)
+#define slll(x,y,z) scanf("%lld %lld %lld",&x,&y,&z)
+
+#define nl '\n'
+#define mp make_pair
+#define F first
+#define S second
+#define pb push_back
+#define ALL(v) v.begin(),v.end()
+#define uniq(a) a.erase(unique(a.begin(), a.end()), a.end())
+#define out(x) cout <<"#x = "<<x<<endl
+#define outt(x,y) cout <<x<<" "<<y<<endl
+#define mem(array,value) memset(array,value,sizeof(array))
+
+#define chkC(x,n) (x[n>>6]&(1<<((n>>1)&31)))
+#define setC(x,n) (x[n>>6]|=(1<<((n>>1)&31)))
+
+#define MX 10005
+//vi prime;
+//bool p[MX];
+//void sieve(){ll sq=sqrt(MX);for(int i=3;i<=sq;i+=2){if(!p[i]){for(int j=i*i;j<MX;j+=i+i){p[j]=1;}}}}
+//ll bigmod(ll n,ll p,ll m){if(p==0)return 1;ll x=bigmod(n,p/2,m);x=((x%m)*(x%m))%m;if(p&1)x=(x*n)%m;return x;}
+//ll gcd(ll a,ll b){return (b==0)?a:gcd(b,a%b);}
+//ll lcm(ll a,ll b){return (a*b)/gcd(a,b);}
+//ll egcd(ll a, ll b, ll *x, ll *y){if(a==0){*x=0,*y=1;return b;}ll x1,y1;ll g=egcd(b%a,a,&x1,&y1);*x=y1-(b/a)*x1;*y=x1;return g;}
+
+void bigIntSum(string a,string b)
+{
+    reverse(ALL(a));
+    reverse(ALL(b));
+    int i=0;
+    while(a[i]=='0'){
+        i++;
+    }
+    a.erase(0,i);
+    i=0;
+    while(b[i]=='0'){
+        i++;
+    }
+    b.erase(0,i);
+
+    if(a.size()>b.size())swap(a,b);
+
+    int  len1=a.size(),len2=b.size();
+    string ans="";
+    int dif=len2-len1,sum=0,carry=0;
+    for(int i=len1-1;i>=0;i--){
+        sum = ((a[i]-'0')+(b[i+dif]-'0')+carry);
+        carry=sum/10;
+        ans+= (sum%10+'0');
+    }
+    for(int i=dif-1;i>=0;i--){
+        sum = ((b[i]-'0')+carry);
+        carry=sum/10;
+        ans+= (sum%10+'0');
+    }
+    if(carry){
+        ans+=(carry+'0');
+    }
+    //reverse(ALL(ans));
+    i=0;
+    while(ans[i]=='0'){
+        i++;
+    }
+    ans.erase(0,i);
+    cout <<ans<<endl;
+}
+int main()
+{
+    int t,cnt=0;
+    si(t);
+    while(t--){
+       string a,b;
+       cin >>a>>b;
+       bigIntSum(a,b);
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
